@@ -19253,7 +19253,8 @@ int init_nvram2(void)
 	}
 
 	detect_vul_scan();
-	init_asus_pp_eula();
+	if (init_asus_pp_eula)
+		init_asus_pp_eula();
 
 	return 0;
 }  // end of init_nvram2

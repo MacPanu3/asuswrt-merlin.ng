@@ -4997,7 +4997,8 @@ extern int webapi_get_b(const int id, char *buf, size_t len);
 extern int get_ASUS_privacy_policy_state(const int id);
 extern int get_ASUS_privacy_policy(void);
 extern int get_ASUS_privacy_policy_ver(const int id);
-extern void init_asus_pp_eula(void);
+/* weak: only provided by spwenc.o blobs from GPL 388_25633 or newer */
+extern void init_asus_pp_eula(void) __attribute__((weak));
 extern char *rfctime(const time_t *timep, char *ts_string, int len);
 extern void update_ntp_ts(time_t bf_time, int ntp_diff_ts);
 extern int validate_rc_service(const char *value);

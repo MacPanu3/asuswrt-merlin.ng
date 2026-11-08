@@ -641,6 +641,8 @@ extern int check_lock_status(time_t *dt);
 extern void check_lock_state();
 extern int gen_asus_token_cookie(char *asus_token, int asus_token_len, char *token_cookie, int cookie_len);
 extern void gen_random_string_v2(char *out, size_t len);
-extern int nvram_modify_log(char *name, char *new, char *old, struct json_object *nvram_modify_obj);
+/* weak: only provided by web_hook.o blobs from GPL 388_25633 or newer */
+extern int nvram_modify_log(char *name, char *new, char *old, struct json_object *nvram_modify_obj) __attribute__((weak));
+extern void handle_nvram_modify_log(struct json_object *nvram_modify_obj) __attribute__((weak));
 extern int httpd_reject_url(char *url);
 #endif /* _httpd_h_ */
