@@ -90,6 +90,12 @@ static void ledbtn(int sig)
 			btn_led_pressed = 1;
 			btn_led_count = 0;
 
+#ifdef RTAX82U
+			LED_status = 1;
+			nvram_set_int("ledg_scheme", LEDG_SCHEME_OFF);
+			nvram_commit();
+			kill_pidfile_s("/var/run/ledg.pid", SIGTSTP);
+#else
 			int ledg_scheme = nvram_get_int("ledg_scheme");
 #ifdef GTAX6000
 			int antled_scheme = nvram_get_int("antled_scheme");
@@ -118,7 +124,7 @@ static void ledbtn(int sig)
 
 			dbg("switch effect\n");
 			kill_pidfile_s("/var/run/ledg.pid", SIGTSTP);
-
+#endif
 		}
 		else if (++btn_led_count > LEDG_WAIT)
 		{

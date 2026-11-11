@@ -2133,8 +2133,12 @@ misc_defaults(int restore_defaults)
 	nvram_unset("wlc_scan_state");
 #if defined(RTAX82U) || defined(GSAX3000) || defined(GSAX5400) || defined(TUFAX5400) || defined(GTAX11000_PRO) || defined(GTAXE16000) || defined(GTAX6000) || defined(GT10) || defined(RTAX82U_V2) || defined(TUFAX5400_V2)
 	nvram_unset("ledg_scheme_tmp");
+#if defined(RTAX82U)
+	nvram_set("ledg_scheme", "0");
+#else
 	if (nvram_get_int("ledg_scheme") >= LEDG_SCHEME_BLINKING)
 		nvram_set("ledg_scheme", nvram_default_get("ledg_scheme"));
+#endif
 #endif
 #ifdef GT10
 	nvram_unset("ledg_once");
