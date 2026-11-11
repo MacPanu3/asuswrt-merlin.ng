@@ -993,7 +993,10 @@ static void tcp_v4_reqsk_destructor(struct request_sock *req)
 void tcp_v4_reqsk_destructor(struct request_sock *req)
 #endif
 {
-	kfree(inet_rsk(req)->opt);
+	struct ip_options_rcu *opt = inet_rsk(req)->opt;
+
+	if (opt)
+		kfree_rcu(opt, rcu);
 }
 
 
