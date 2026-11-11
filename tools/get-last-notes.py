@@ -5,7 +5,7 @@ import os
 
 today=date.today()
 CHANGELOG_FILE='Changelog-NG.txt'
-MSG="""##  GNUton's Asus Merlin changelog  ##\n"""
+MSG="""## Asuswrt-Merlin RT-AX82U V1 Changelog ##\n"""
 TAGGED_RELEASE_ENV_NAME='CIRCLE_TAG'
 
 latest_release = None
