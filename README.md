@@ -27,9 +27,9 @@
 ## What Changed Since GNUton `3004.388.11_1-gnuton1`
 
 ### 1. Upstream RMerl Sync (`3004.388.12` → `3004.388.12_2` → `3004.388.13`)
-- Synced upstream Asuswrt-Merlin `3004.388.13` onto GNUton's `3004.388.11_1-gnuton1` base:
-  - OpenSSL 3.5 migration (with 1.1.1 / 1.0.0 compatibility shims for proprietary blobs).
-  - GPL `388_25633` merge with weak-symbol compatibility for pre-`388_25633` RT-AX82U closed-source blobs.
+- Built directly on [**jef00's**](https://github.com/jef00/asuswrt-merlin.ng) heavy lifting syncing upstream Asuswrt-Merlin `3004.388.13` onto GNUton's `3004.388.11_1-gnuton1` base:
+  - OpenSSL 3.5 migration for GNUton models (with 1.1.1 / 1.0.0 compatibility shims for proprietary blobs).
+  - GPL `388_25633` merge with weak-symbol compatibility (`init_asus_pp_eula` / `nvram_modify_log`) for pre-`388_25633` closed-source blobs.
   - Updated core components (`dnsmasq`, `miniupnpd`, `tor` with IPv6 support, `curl`, `wget`, `dropbear`, `amtm`, `zoneinfo`, `haveged`, DNSSEC `KSK-2024` trust anchor) and Dual WAN / WebUI / security fixes.
 
 ### 2. Custom RT-AX82U V1 Modifications & Backports (`3004.388.13_0-plus1`)
@@ -56,6 +56,7 @@ Tagging a release (e.g. `3004.388.13_0-plus1`) automatically builds and publishe
 
 ## Credits & Disclaimer
 
+- **3004.388.13 Sync & OpenSSL 3.5 Heavy Lifting:** Special thanks to [**jef00**](https://github.com/jef00/asuswrt-merlin.ng) for the upstream `3004.388.13` merge onto GNUton's tree, OpenSSL 3.5 model migration, and pre-`388_25633` blob compatibility shims
 - **Upstream Asuswrt-Merlin:** [RMerl/asuswrt-merlin.ng](https://github.com/RMerl/asuswrt-merlin.ng) and contributors
 - **GNUton's Fork & CI Toolchain:** [gnuton/asuswrt-merlin.ng](https://github.com/gnuton/asuswrt-merlin.ng)
 - **ASUS:** GPL source code releases
