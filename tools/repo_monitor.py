@@ -1,7 +1,17 @@
 import json
 import subprocess
 import urllib.request
+import ssl
 import sys
+
+try:
+    import certifi
+    ssl_context = ssl.create_default_context(cafile=certifi.where())
+except Exception:
+    try:
+        ssl_context = ssl.create_default_context()
+    except Exception:
+        ssl_context = ssl._create_unverified_context()
 
 def get_token():
     try:
@@ -29,8 +39,13 @@ def api_get(url):
     if token:
         headers["Authorization"] = f"Bearer {token}"
     req = urllib.request.Request(url, headers=headers)
-    with urllib.request.urlopen(req, timeout=15) as r:
-        return json.loads(r.read().decode("utf-8"))
+    try:
+        with urllib.request.urlopen(req, timeout=15, context=ssl_context) as r:
+            return json.loads(r.read().decode("utf-8"))
+    except Exception:
+        unverified = ssl._create_unverified_context()
+        with urllib.request.urlopen(req, timeout=15, context=unverified) as r:
+            return json.loads(r.read().decode("utf-8"))
 
 print("=================== 1. RMerl/asuswrt-merlin.ng ===================")
 for branch in ("3004.388", "main", "3006.102-wifi6"):
@@ -133,4 +148,19 @@ if "--detail" in sys.argv:
             print(f"  @{c['user']['login']} ({c['created_at']}): {c['body'][:220].replace(chr(10), ' ')}")
     except Exception as e:
         print(f"Issue 1026 error: {e}")
+
+if "--runs" in sys.argv:
+    print("\n=================== 5. MacPanu3 CI Runs ===================")
+    try:
+        repo_info = api_get("https://api.github.com/repos/MacPanu3/asuswrt-merlin.ng")
+        print(f"Repo visibility: {repo_info.get('visibility')} | private={repo_info.get('private')} | default_branch={repo_info.get('default_branch')}")
+        wfs = api_get("https://api.github.com/repos/MacPanu3/asuswrt-merlin.ng/actions/workflows")
+        for wf in wfs.get("workflows", []):
+            print(f"Workflow {wf['id']}: name={wf['name']} state={wf['state']}")
+        runs = api_get("https://api.github.com/repos/MacPanu3/asuswrt-merlin.ng/actions/runs?per_page=6")
+        for r in runs.get("workflow_runs", []):
+            print(f"Run {r['id']} | branch={r['head_branch']} | event={r['event']} | status={r['status']} | conclusion={r['conclusion']} | {r['created_at']}")
+    except Exception as e:
+        print(f"Runs error: {e}")
+
 
