@@ -1,6 +1,17 @@
 Asuswrt-Merlin GNUton's builds Changelog
 ========================
 
+3004.388.13_0-plus2 (14-Nov-2026)
+  - FIXED: sch_cake: boundary check to host bulk flow fairness counts
+           (backported from upstream RMerlin 3004.388 beb0c4c6).
+  - FIXED: webui: malformed span tags on Wireless Log client list
+           (backported from upstream RMerlin main c825ea93).
+  - FIXED: httpd: crash when node capability or /tmp/cap.json is empty
+           (RMerlin PR #924).
+  - FIXED: json-c: ensure printbuf buffer is initialized to NUL on allocation.
+  - CHANGED: rc: silence repetitive periodic DDNS syslog messages unless
+             ddns_debug=1 (backported from upstream RMerlin main 41ca8269).
+
 3004.388.13_0-plus1 (11-Nov-2026)
   [RT-AX82U V1 Custom Additions & Security Backports]
   - NEW: Permanently disabled front Aura RGB light bar with zero CPU

@@ -32,8 +32,12 @@
   - GPL `388_25633` merge with weak-symbol compatibility (`init_asus_pp_eula` / `nvram_modify_log`) for pre-`388_25633` closed-source blobs.
   - Updated core components (`dnsmasq`, `miniupnpd`, `tor` with IPv6 support, `curl`, `wget`, `dropbear`, `amtm`, `zoneinfo`, `haveged`, DNSSEC `KSK-2024` trust anchor) and Dual WAN / WebUI / security fixes.
 
-### 2. Custom RT-AX82U V1 Modifications & Backports (`3004.388.13_0-plus1`)
+### 2. Custom RT-AX82U V1 Modifications & Backports (`3004.388.13_0-plus2`)
 - **Permanent Front Aura RGB Disable:** Defaults `ledg_scheme` to `"0"` and updates `ledg` (`defaults.c`, `init.c`, `ledbtn.c`) so the front Aura RGB bar stays permanently off after boot and cancels its timer (`alarmtimer(0, 0)`) with zero CPU overhead, while keeping the 4 white top status LEDs functioning normally.
+- **sch_cake Bounds Check:** Adds boundary checks to host bulk flow fairness counts in `sch_cake.c` (backported from RMerl `3004.388` `beb0c4c6`).
+- **WebUI Wireless Log Fix:** Resolves unclosed `<span>` tags on the client status list (backported from RMerl `main` `c825ea93`).
+- **WebUI & json-c Crash Hardening:** Prevents `httpd` crash when `/tmp/cap.json` or capability files are empty, and initializes `printbuf` buffer to NUL (PR #924).
+- **DDNS Log Silencing:** Mutes periodic repetitive DDNS syslog spam unless `ddns_debug=1` (backported from RMerl `main` `41ca8269`).
 - **OpenVPN 2.7.9:** Backported from upstream RMerl `main` (memory scrubbing of auth tokens/keys).
 - **CA Bundle Update:** Removed deprecated emSign signing keys (backported from RMerl `main`).
 - **Linux 4.1 IPv4 Kernel Fix:** Frees `inet_opt` and `opt` after an RCU grace period in `af_inet.c` and `tcp_ipv4.c` (`CVE-2026-98432`).

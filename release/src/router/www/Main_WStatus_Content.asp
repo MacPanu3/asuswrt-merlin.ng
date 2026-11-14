@@ -265,7 +265,7 @@ function display_clients(clientsarray, obj, unit) {
 			}
 
 			if (hostname.length > 24) {		// Name
-				code +='<br><span style="margin-top:-15px; color: cyan;" title="' + hostname + '">'+ hostname.substring(0,20) +'...</span></td>';
+				code +='<br><span style="margin-top:-15px; color: cyan;" title="' + htmlEnDeCode.htmlEncode(hostname) + '">'+ htmlEnDeCode.htmlEncode(hostname.substring(0,20)) +'...</span></td>';
 			} else {
 				code +='<br><span style="margin-top:-15px; color: cyan;">'+ htmlEnDeCode.htmlEncode(hostname) +'</span></td>';
 			}
@@ -284,7 +284,7 @@ function display_clients(clientsarray, obj, unit) {
 				code += '<br></td>'; // IPv6
 
 			code += '<td style="text-align: right;">' + client[5] + ' / ' + client[6] +' Mbps';	// Rate
-			code += '<br><span style="margin-top:-15px; color: cyan;">' + client[4] + ' dBm</td>';	// RSSI
+			code += '<br><span style="margin-top:-15px; color: cyan;">' + client[4] + ' dBm</span></td>';	// RSSI
 			code += '<td style="text-align: right;vertical-align:top;">' + client[7] + '</td>';	// Time
 
 			if (client[8] != "") {
@@ -295,7 +295,7 @@ function display_clients(clientsarray, obj, unit) {
 				code += '<td>';
 			}
 			if (client[10] != "") {
-				code += '<br><span style="margin-top:-15px; color: cyan;">' + client[10] + '</td>';  // BW
+				code += '<br><span style="margin-top:-15px; color: cyan;">' + client[10] + '</span></td>';  // BW
 			} else {
 				code += '</td>';
 			}
