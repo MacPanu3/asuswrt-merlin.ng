@@ -67,10 +67,6 @@ This firmware build would not exist without the dedication, deep expertise, and 
 - **Eric Sauvageau ([@RMerl](https://github.com/RMerl))**: The foundational architect and maintainer of Asuswrt-Merlin for over a decade. His rigorous code standards, custom script framework, ongoing security backports, and stewardship of the router community remain the cornerstone of everything built here.
 - **GNUton ([@gnuton](https://github.com/gnuton))**: The creator and maintainer of the GNUton builds, whose visionary work expanded Asuswrt-Merlin to Broadcom DSL and broader AX platforms including the RT-AX82U. His Dockerized cross-compilation toolchains and CI infrastructure make automated, reproducible firmware releases possible.
 - **jef00 ([@jef00](https://github.com/jef00))**: For the arduous, foundational work merging upstream `3004.388.13` onto GNUton's base, pioneering the OpenSSL 3.5 transition, and engineering weak-symbol shims (`init_asus_pp_eula` / `nvram_modify_log`) for closed-source Broadcom binary compatibility.
-- **RSDNTWK ([@RSDNTWK](https://github.com/RSDNTWK))**: For designing the OpenSSL 3.5 compatibility shims and continuously backporting critical cryptographic CVE fixes (including OpenSSL 1.1 CVE-2026-107496).
-- **Dawid2849 ([@Dawid2849](https://github.com/Dawid2849))**: For essential platform enhancements, including expanding static route and firewall buffer limitations (`#1006`).
-- **decoderman ([@decoderman](https://github.com/decoderman))**: For creating and maintaining `amtm` (Asuswrt-Merlin Terminal Menu), which revolutionized shell automation, package handling, and maintenance scripts on Asuswrt devices.
-- **ste94pz ([@ste94pz](https://github.com/ste94pz)) & dave14305 ([@dave14305](https://github.com/dave14305))**: For upstream UPnP reliability patches, DNS/SDN enhancements, cake-autorate development, and ongoing network edge-case debugging.
 - **ASUSTeK Computer Inc.**: For publishing GPL source code drops and supporting collaborative open-source router firmware development.
 - **The SNBForums Community**: For decades of testing, diagnostics, feedback, and mutual support across the Asuswrt-Merlin user base.
 
