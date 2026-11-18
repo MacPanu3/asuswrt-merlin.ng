@@ -1,6 +1,12 @@
 Asuswrt-Merlin GNUton's builds Changelog
 ========================
 
+3004.388.13_0-plus3 (18-Nov-2026)
+  - FIXED: OpenSSL 1.1: prevent infinite loop in EC key generation when
+           curve order is 1 (CVE-2026-107496, upstream RMerlin c5bf8323).
+  - FIXED: httpd: free previously allocated DHCP lease buffer before allocating
+           a larger buffer on expansion (upstream RMerlin bb737eaf).
+
 3004.388.13_0-plus2 (14-Nov-2026)
   - FIXED: sch_cake: boundary check to host bulk flow fairness counts
            (backported from upstream RMerlin 3004.388 beb0c4c6).
