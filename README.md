@@ -32,7 +32,9 @@
   - GPL `388_25633` merge with weak-symbol compatibility (`init_asus_pp_eula` / `nvram_modify_log`) for pre-`388_25633` closed-source blobs.
   - Updated core components (`dnsmasq`, `miniupnpd`, `tor` with IPv6 support, `curl`, `wget`, `dropbear`, `amtm`, `zoneinfo`, `haveged`, DNSSEC `KSK-2024` trust anchor) and Dual WAN / WebUI / security fixes.
 
-### 2. Custom RT-AX82U V1 Modifications & Backports (`3004.388.13_0-plus2`)
+### 2. Custom RT-AX82U V1 Modifications & Backports (`3004.388.13_0-plus3`)
+- **OpenSSL 1.1 CVE-2026-107496:** Prevents infinite loop in EC key generation when curve group order is 1 in `crypto/ec/ec_key.c` (backported from upstream RMerl `c5bf8323`).
+- **httpd DHCP Lease Buffer Leak Fix:** Explicitly frees previous buffer before allocating larger capacity on dynamic expansions in `ej_dhcpLeaseMacList()` (backported from upstream RMerl `bb737eaf`).
 - **Permanent Front Aura RGB Disable:** Defaults `ledg_scheme` to `"0"` and updates `ledg` (`defaults.c`, `init.c`, `ledbtn.c`) so the front Aura RGB bar stays permanently off after boot and cancels its timer (`alarmtimer(0, 0)`) with zero CPU overhead, while keeping the 4 white top status LEDs functioning normally.
 - **sch_cake Bounds Check:** Adds boundary checks to host bulk flow fairness counts in `sch_cake.c` (backported from RMerl `3004.388` `beb0c4c6`).
 - **WebUI Wireless Log Fix:** Resolves unclosed `<span>` tags on the client status list (backported from RMerl `main` `c825ea93`).
@@ -52,17 +54,28 @@ See [Changelog-NG.txt](Changelog-NG.txt) for the full consolidated release notes
 
 Firmware images are built in GitHub Actions via [`.github/workflows/github-actions.yml`](.github/workflows/github-actions.yml) using `gnuton/asuswrt-merlin-toolchains-docker:latest`.
 
-Tagging a release (e.g. `3004.388.13_0-plus1`) automatically builds and publishes to [GitHub Releases](https://github.com/MacPanu3/asuswrt-merlin.ng/releases):
+Tagging a release (e.g. `3004.388.13_0-plus3`) automatically builds and publishes to [GitHub Releases](https://github.com/MacPanu3/asuswrt-merlin.ng/releases):
 - Firmware image (`RT-AX82U_<version>_puresqubi.w`) and `.md5` checksum
 - Release notes extracted from the top section of [Changelog-NG.txt](Changelog-NG.txt) via [`tools/get-last-notes.py`](tools/get-last-notes.py)
 
 ---
 
-## Credits & Disclaimer
+## Credits & Heartfelt Acknowledgments
 
-- **3004.388.13 Sync & OpenSSL 3.5 Heavy Lifting:** Special thanks to [**jef00**](https://github.com/jef00/asuswrt-merlin.ng) for the upstream `3004.388.13` merge onto GNUton's tree, OpenSSL 3.5 model migration, and pre-`388_25633` blob compatibility shims
-- **Upstream Asuswrt-Merlin:** [RMerl/asuswrt-merlin.ng](https://github.com/RMerl/asuswrt-merlin.ng) and contributors
-- **GNUton's Fork & CI Toolchain:** [gnuton/asuswrt-merlin.ng](https://github.com/gnuton/asuswrt-merlin.ng)
-- **ASUS:** GPL source code releases
+This firmware build would not exist without the dedication, deep expertise, and tireless efforts of the primary artisans behind the Asuswrt-Merlin ecosystem:
+
+- **Eric Sauvageau ([@RMerl](https://github.com/RMerl))**: The foundational architect and maintainer of Asuswrt-Merlin for over a decade. His rigorous code standards, custom script framework, ongoing security backports, and stewardship of the router community remain the cornerstone of everything built here.
+- **GNUton ([@gnuton](https://github.com/gnuton))**: The creator and maintainer of the GNUton builds, whose visionary work expanded Asuswrt-Merlin to Broadcom DSL and broader AX platforms including the RT-AX82U. His Dockerized cross-compilation toolchains and CI infrastructure make automated, reproducible firmware releases possible.
+- **jef00 ([@jef00](https://github.com/jef00))**: For the arduous, foundational work merging upstream `3004.388.13` onto GNUton's base, pioneering the OpenSSL 3.5 transition, and engineering weak-symbol shims (`init_asus_pp_eula` / `nvram_modify_log`) for closed-source Broadcom binary compatibility.
+- **RSDNTWK ([@RSDNTWK](https://github.com/RSDNTWK))**: For designing the OpenSSL 3.5 compatibility shims and continuously backporting critical cryptographic CVE fixes (including OpenSSL 1.1 CVE-2026-107496).
+- **Dawid2849 ([@Dawid2849](https://github.com/Dawid2849))**: For essential platform enhancements, including expanding static route and firewall buffer limitations (`#1006`).
+- **decoderman ([@decoderman](https://github.com/decoderman))**: For creating and maintaining `amtm` (Asuswrt-Merlin Terminal Menu), which revolutionized shell automation, package handling, and maintenance scripts on Asuswrt devices.
+- **ste94pz ([@ste94pz](https://github.com/ste94pz)) & dave14305 ([@dave14305](https://github.com/dave14305))**: For upstream UPnP reliability patches, DNS/SDN enhancements, cake-autorate development, and ongoing network edge-case debugging.
+- **ASUSTeK Computer Inc.**: For publishing GPL source code drops and supporting collaborative open-source router firmware development.
+- **The SNBForums Community**: For decades of testing, diagnostics, feedback, and mutual support across the Asuswrt-Merlin user base.
+
+---
+
+## Disclaimer
 
 > This is a personal custom firmware build provided as-is, with no warranty. Flash at your own risk.
