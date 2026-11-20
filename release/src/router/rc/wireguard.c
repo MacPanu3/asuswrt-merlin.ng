@@ -7,6 +7,7 @@
 #include <arpa/inet.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/file.h>
 #include <netdb.h>
 #include "rc.h"
 
@@ -1822,9 +1823,20 @@ void check_wgc_endpoint()
 	char ep_addr_r[1024] = {0};
 	char buf[1024] = {0};
 	char *p;
+	int lock_fd;
 
 	if(!is_wan_connect(wan_primary_ifunit()))
 		return;
+
+	/* Prevent process accumulation if endpoint resolution hangs (GNUton Issue #1049) */
+	lock_fd = open("/var/run/check_wgc_ep.lock", O_CREAT | O_RDWR, 0644);
+	if (lock_fd >= 0) {
+		if (flock(lock_fd, LOCK_EX | LOCK_NB) < 0) {
+			close(lock_fd);
+			_dprintf("%s: another instance is already running, skipping\n", __FUNCTION__);
+			return;
+		}
+	}
 
 	for (unit = 1; unit <= WG_CLIENT_MAX; unit++)
 	{
@@ -1871,5 +1883,10 @@ void check_wgc_endpoint()
 				notify_rc(buf);
 			}
 		}
+	}
+
+	if (lock_fd >= 0) {
+		flock(lock_fd, LOCK_UN);
+		close(lock_fd);
 	}
 }
