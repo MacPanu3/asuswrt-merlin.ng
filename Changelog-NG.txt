@@ -1,6 +1,15 @@
 Asuswrt-Merlin GNUton's builds Changelog
 ========================
 
+3004.388.13_0-plus4 (22-Nov-2026)
+  - UPDATED: zlib to 1.3.2 (backported from upstream RMerlin fff140b9 / ASUS GPL 388_25817).
+  - FIXED: httpd: free allocated memory for buf in ftpServerTree_cgi (upstream RMerlin 967afe91).
+  - FIXED: rc: close socket descriptor on SIOCGARP error in pc_block (upstream RMerlin 53c17580 / c9d640fd).
+  - FIXED: rc: free port list copy after parsing in nat_setting (upstream RMerlin 5f55bac2).
+  - FIXED: rc: prevent check_wgc_ep process accumulation with non-blocking flock guard (GNUton Issue #1049).
+  - FIXED: rc: resolve strdup subnet parsing heap leaks and fd leaks in IPsec (upstream RMerlin 5afd3945).
+  - FIXED: libdisk: close directory stream and check share parameters in error handling paths (upstream RMerlin 63bf5aed).
+
 3004.388.13_0-plus3 (18-Nov-2026)
   - FIXED: OpenSSL 1.1: prevent infinite loop in EC key generation when
            curve order is 1 (CVE-2026-107496, upstream RMerlin c5bf8323).
