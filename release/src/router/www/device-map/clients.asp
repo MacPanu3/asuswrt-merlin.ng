@@ -102,6 +102,20 @@ function initial(){
 	reset_NM_height();
 }
 
+function isClientShown(clientObj, tab){
+	if(!clientObj.isOnline) return false;
+	if(tab == 'wired' && clientObj.isWL != 0) return false;
+	if(tab == 'wireless' && clientObj.isWL == 0) return false;
+	if(tab == 'wireless1' && clientObj.isWL != 1) return false;
+	if(tab == 'wireless2' && clientObj.isWL != 2) return false;
+	if(tab == 'wireless3' && clientObj.isWL != 3) return false;
+	if(tab == 'wireless4' && clientObj.isWL != 4) return false;
+	if(tab == 'wireless5' && clientObj.isWL != 5) return false;
+	if(tab == 'custom' && clientObj.from != "customList") return false;
+	var clientName = (clientObj.nickName == "") ? clientObj.name : clientObj.nickName;
+	return clientName.toLowerCase().indexOf(document.getElementById("searchingBar").value.toLowerCase()) != -1;
+}
+
 function drawClientList(tab){
 	var clientHtml = '<table width="100%" cellspacing="0" align="center"><tbody><tr><td>';
 	var clientHtmlTd = '';
@@ -117,20 +131,8 @@ function drawClientList(tab){
 	while(i < pagesVar.endIndex){
 		var clientObj = clientList[clientList[i]];	
 
-		// fileter /*
 		if(i > clientList.length-1) break;
-		if(tab == 'online' && !clientObj.isOnline){i++; pagesVar.endIndex++; continue;}
-		if((tab == 'wired' && clientObj.isWL != 0) || !clientObj.isOnline){i++; pagesVar.endIndex++; continue;}
-		if((tab == 'wireless' && clientObj.isWL == 0) || !clientObj.isOnline){i++; pagesVar.endIndex++; continue;}
-		if((tab == 'wireless1' && clientObj.isWL != 1) || !clientObj.isOnline){i++; pagesVar.endIndex++; continue;}
-		if((tab == 'wireless2' && clientObj.isWL != 2) || !clientObj.isOnline){i++; pagesVar.endIndex++; continue;}
-		if((tab == 'wireless3' && clientObj.isWL != 3) || !clientObj.isOnline){i++; pagesVar.endIndex++; continue;}
-		if((tab == 'wireless4' && clientObj.isWL != 4) || !clientObj.isOnline){i++; pagesVar.endIndex++; continue;}
-		if((tab == 'wireless5' && clientObj.isWL != 5) || !clientObj.isOnline){i++; pagesVar.endIndex++; continue;}
-		if(tab == 'custom' && clientObj.from != "customList"){i++; pagesVar.endIndex++; continue;}
-		var clientName = (clientObj.nickName == "") ? clientObj.name : clientObj.nickName;
-		if(clientName.toLowerCase().indexOf(document.getElementById("searchingBar").value.toLowerCase()) == -1){i++; pagesVar.endIndex++; continue;}
-		// filter */ 
+		if(!isClientShown(clientObj, tab)){i++; pagesVar.endIndex++; continue;} 
 
 		clientHtmlTd += '<div class="clientBg" onclick="popupCustomTable(\'' + clientObj.mac + '\');"><table width="100%" height="85px" border="0"><tr><td rowspan="3" width="85px">';
 		if(usericon_support) {
@@ -290,7 +292,14 @@ function drawClientList(tab){
 
 	// page switcher
 	document.getElementById("leftBtn").style.visibility = (pagesVar.startIndex == 0) ? "hidden" : "visible";
-	document.getElementById("rightBtn").style.visibility = (pagesVar.endIndex >= clientList.length) ? "hidden" : "visible";
+	var hasNextPage = false;
+	for(var j = pagesVar.endIndex; j < clientList.length; j++){
+		if(isClientShown(clientList[clientList[j]], tab)){
+			hasNextPage = true;
+			break;
+		}
+	}
+	document.getElementById("rightBtn").style.visibility = hasNextPage ? "visible" : "hidden";
 
 	// Wired
 	if(!(isSwMode('mb') || isSwMode('ew'))) {
