@@ -221,16 +221,6 @@
             "confirmed": "No",
             "ping_target": "No"
         },
-    "24":{
-            "FilterMode": "Safe",
-            "DNSService": "Quad9",
-            "ServiceIP1": "9.9.9.9",
-            "ServiceIP2": "149.112.112.112",
-            "Description": "Blocks malicious content, including malware and phishing, using threat intelligence from more than 20 sources.",
-            "url": "https://quad9.net/asus/safe",
-            "confirmed": "Yes",
-            "ping_target": "Yes"
-        },
     "25":{
             "FilterMode": "Safe",
             "DNSService": "Yandex",
@@ -255,16 +245,6 @@
             "ServiceIP1": "86.54.11.11",
             "ServiceIP2": "86.54.11.211",
             "Description": "Avoid access to websites inappropriate for children, such as explicit content, violence or drugs. Plus filter ads on top of the protective functionality.",
-            "confirmed": "Yes",
-            "ping_target": "No"
-        },
-    "28":{
-            "FilterMode": "Privacy-respecting",
-            "DNSService": "Quad9",
-            "ServiceIP1": "9.9.9.11",
-            "ServiceIP2": "149.112.112.11",
-            "Description": "Collects no information about users, and is governed by Swiss privacy law.",
-            "url": "https://quad9.net/asus/private",
             "confirmed": "Yes",
             "ping_target": "No"
         },

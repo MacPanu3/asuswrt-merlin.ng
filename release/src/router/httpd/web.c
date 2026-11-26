@@ -37775,7 +37775,7 @@ static int ej_dnsfilter_modes_list(int eid, webs_t wp, int argc, char_t **argv)
 		{"10", "Custom3"},		/* 10: Custom3 - not supported yet */
 		{"11", "Router"},		/* 11: Router  - semi-supported, refer dnsfilter_setup_dnsmasq() */
 		{"12", "Comodo Secure DNS"},		/* 12: Comodo Secure DNS */
-		{"13", "Quad9"},	/* 13: Quad9 */
+		{"13", "Discontinued Quad9"},	/* 13: Discontinued Quad9 */
 		{"14", "CleanBrowsing Security"},	/* 14: CleanBrowsing Security */
 		{"15", "CleanBrowsing Adult"},	/* 15: CleanBrowsing Adult */
 		{"16", "CleanBrowsing Family"},	/* 16: CleanBrowsing Family */

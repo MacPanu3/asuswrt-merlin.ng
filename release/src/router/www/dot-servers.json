@@ -197,17 +197,17 @@
 			"dnspriv_spkipin" : ""
 		},
 		{
-			"dnspriv_label" : "Quad9 1",
-			"dnspriv_server" : "9.9.9.9",
+			"dnspriv_label" : "Digitale Gesellschaft 1",
+			"dnspriv_server" : "185.95.218.42",
 			"dnspriv_port" : "",
-			"dnspriv_hostname" : "dns.quad9.net",
+			"dnspriv_hostname" : "dns.digitale-gesellschaft.ch",
 			"dnspriv_spkipin" : ""
 		},
 		{
-			"dnspriv_label" : "Quad9 2",
-			"dnspriv_server" : "149.112.112.112",
+			"dnspriv_label" : "Digitale Gesellschaft 2",
+			"dnspriv_server" : "185.95.218.43",
 			"dnspriv_port" : "",
-			"dnspriv_hostname" : "dns.quad9.net",
+			"dnspriv_hostname" : "dns.digitale-gesellschaft.ch",
 			"dnspriv_spkipin" : ""
 		}
 	],
@@ -418,17 +418,17 @@
 			"dnspriv_spkipin" : ""
 		},
 		{
-			"dnspriv_label" : "Quad9 1",
-			"dnspriv_server" : "2620:fe::fe",
+			"dnspriv_label" : "Digitale Gesellschaft 1",
+			"dnspriv_server" : "2a05:fc84::42",
 			"dnspriv_port" : "",
-			"dnspriv_hostname" : "dns.quad9.net",
+			"dnspriv_hostname" : "dns.digitale-gesellschaft.ch",
 			"dnspriv_spkipin" : ""
 		},
 		{
-			"dnspriv_label" : "Quad9 2",
-			"dnspriv_server" : "2620:fe::9",
+			"dnspriv_label" : "Digitale Gesellschaft 2",
+			"dnspriv_server" : "2a05:fc84::43",
 			"dnspriv_port" : "",
-			"dnspriv_hostname" : "dns.quad9.net",
+			"dnspriv_hostname" : "dns.digitale-gesellschaft.ch",
 			"dnspriv_spkipin" : ""
 		}
 	],

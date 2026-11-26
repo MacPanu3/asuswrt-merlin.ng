@@ -1581,7 +1581,7 @@ function updatDNSListOnline(){
 		DNSService = Object.keys(local_data).map(function(e){
 				return local_data[e];
 		});
-
+/*
 		$.getJSON("https://nw-dlcdnet.asus.com/plugin/js/DNS_List.json",
 			function(cloud_data){
 				if(JSON.stringify(local_data) != JSON.stringify(cloud_data)){
@@ -1593,6 +1593,7 @@ function updatDNSListOnline(){
 				}
 			}
 		);
+*/
 	});
 }
 

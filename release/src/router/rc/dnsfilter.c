@@ -48,7 +48,6 @@ int dnsfilter_support_dot(int mode)
 		case DNSF_SRV_CUSTOM1:
 		case DNSF_SRV_CUSTOM2:
 		case DNSF_SRV_CUSTOM3:	// Custom 1, 2 and 3 - assume they might support it
-		case DNSF_SRV_QUAD9:
 		case DNSF_SRV_ROUTER:	// Router (in case end-user implements it locally)
 		case DNSF_SRV_CLEANBROWSING_SECURITY:
 		case DNSF_SRV_CLEANBROWSING_ADULT:
