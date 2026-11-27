@@ -2020,8 +2020,9 @@ void start_dnsmasq(void)
 		/* DNS server */
 		value = nvram_safe_get("ipv6_dns1_x");
 		value2 = nvram_safe_get("ipv6_dns2_x");
-		const char *p = NULL, *p2 = NULL;
-		if ((*value && *(p = ipv6_address(value))) || (*value2 && *(p2 = ipv6_address(value2)))) {
+		const char *p = *value ? ipv6_address(value) : "";
+		const char *p2 = *value2 ? ipv6_address(value2) : "";
+		if (*p || *p2) {
 #if defined(RTCONFIG_IPV6) && (defined(RTAX82_XD6) || defined(RTAX82_XD6S) || defined(XD6_V2) || defined(ET12))
 			if (!strncmp(nvram_safe_get("territory_code"), "CH", 2))
 				nvram_unset("ipv6_dns");

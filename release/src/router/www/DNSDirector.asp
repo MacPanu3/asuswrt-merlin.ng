@@ -103,6 +103,7 @@ function gen_modeselect(name, value, onchange){
 	var i;
 	var optGroup = "", opt;
 	var obj = document.getElementById(name);
+	var legacy_modes = { "13": "Discontinued Quad9" };
 
 	if ((name == "client_modesel") || (name == "dnsfilter_mode")) {
 		for(i = 0; i < modes_array.length; i++){
@@ -121,6 +122,13 @@ function gen_modeselect(name, value, onchange){
 			}
 	        }
 		if (optGroup != "") obj.appendChild(optGroup);
+		if (legacy_modes.hasOwnProperty(value)) {
+			opt = document.createElement('option');
+			opt.value = value;
+			opt.innerHTML = legacy_modes[value];
+			opt.selected = true;
+			obj.appendChild(opt);
+		}
 	} else {
 		code = '<select class="input_option" name="'+name+'" value="'+value+'" onchange="'+onchange+'">';
 		for (i = 0; i < modes_array.length; i++){
@@ -133,6 +141,8 @@ function gen_modeselect(name, value, onchange){
 			}
 		}
 		if (optGroup != "") code += '</optgroup>';
+		if (legacy_modes.hasOwnProperty(value))
+			code += '<option value="' + value + '" selected>' + legacy_modes[value] + '</option>';
 		code += '</select>';
 	}
 
